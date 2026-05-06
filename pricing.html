@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support MDViewer - Pricing</title>
+    <title>MDViewer Pricing — Free, Pro, and Business</title>
+    <meta name="description" content="MDViewer is free for personal use. One-time Pro and Business licenses available for professional documentation workflows. No subscriptions, no DRM.">
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -15,17 +16,18 @@
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --primary-color: #764ba2;
+            --pro-color: #667eea;
+            --business-color: #3d3d8f;
+            --free-color: #28a745;
             --text-dark: #333;
             --text-light: #666;
             --white: #ffffff;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --shadow-hover: rgba(0, 0, 0, 0.15);
+            --shadow: rgba(0, 0, 0, 0.08);
+            --shadow-hover: rgba(0, 0, 0, 0.14);
         }
-        
-        * {
-            box-sizing: border-box;
-        }
-        
+
+        * { box-sizing: border-box; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -35,7 +37,7 @@
             color: var(--text-dark);
             min-height: 100vh;
         }
-        
+
         /* Navigation */
         nav {
             background: rgba(255, 255, 255, 0.95);
@@ -47,7 +49,6 @@
             border-radius: 0 0 15px 15px;
             box-shadow: 0 2px 10px var(--shadow);
         }
-        
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -57,12 +58,7 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        
-        .nav-brand {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        
+        .nav-brand { font-size: 1.5rem; font-weight: bold; }
         .nav-brand a {
             background: var(--primary-gradient);
             -webkit-background-clip: text;
@@ -70,14 +66,12 @@
             background-clip: text;
             text-decoration: none;
         }
-        
         .nav-links {
             display: flex;
             gap: 2rem;
             align-items: center;
             flex-wrap: wrap;
         }
-        
         .nav-links a {
             color: var(--text-dark);
             text-decoration: none;
@@ -86,216 +80,328 @@
             padding: 0.5rem 1rem;
             border-radius: 20px;
         }
-        
         .nav-links a:hover, .nav-links a.active {
             color: var(--primary-color);
             background: rgba(118, 75, 162, 0.1);
         }
-        
+
+        /* Hero */
         .pricing-hero {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 4rem 2rem 3rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             margin-bottom: 3rem;
         }
-        
         .pricing-hero h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             font-weight: 300;
         }
-        
         .pricing-hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1.15rem;
+            max-width: 580px;
             margin: 0 auto;
-            opacity: 0.9;
+            opacity: 0.92;
         }
-        
-        .philosophy {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            padding: 0 2rem;
-            text-align: center;
-        }
-        
-        .philosophy h2 {
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-        
-        .philosophy p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .highlight {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-            margin: 2rem 0;
-            font-style: italic;
-        }
-        
-        .support-tiers {
-            max-width: 1200px;
+
+        /* Pricing grid */
+        .pricing-section {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 2rem 2rem;
         }
-        
-        .tiers-grid {
+        .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            margin: 2rem 0;
+            align-items: start;
         }
-        
-        .tier-card {
+
+        .plan-card {
             background: white;
             border: 2px solid #e9ecef;
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
+            border-radius: 14px;
+            padding: 2rem 1.75rem;
             position: relative;
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
         }
-        
-        .tier-card:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        .plan-card:hover {
+            box-shadow: 0 10px 30px var(--shadow-hover);
+            transform: translateY(-3px);
         }
-        
-        .tier-card.free {
-            border-color: #28a745;
-            background: linear-gradient(135deg, #f8fff9 0%, #f0fff4 100%);
+
+        .plan-card.pro {
+            border-color: var(--pro-color);
         }
-        
-        .tier-card.popular {
-            border-color: #667eea;
-            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
-            position: relative;
+        .plan-card.business {
+            border-color: var(--business-color);
         }
-        
-        .tier-card.popular::before {
-            content: "Most Common";
+
+        .plan-badge {
             position: absolute;
-            top: -10px;
+            top: -11px;
             left: 50%;
             transform: translateX(-50%);
-            background: #667eea;
+            background: var(--primary-gradient);
             color: white;
-            padding: 0.3rem 1rem;
+            padding: 0.25rem 1rem;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
         }
-        
-        .tier-amount {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #333;
+
+        .plan-name {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-light);
             margin-bottom: 0.5rem;
         }
-        
-        .tier-card.free .tier-amount {
-            color: #28a745;
+        .plan-card.pro .plan-name { color: var(--pro-color); }
+        .plan-card.business .plan-name { color: var(--business-color); }
+        .plan-card.free .plan-name { color: var(--free-color); }
+
+        .plan-price {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.1;
+            margin-bottom: 0.25rem;
         }
-        
-        .tier-description {
-            color: #666;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
+        .plan-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+
+        .plan-tagline {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            min-height: 2.8rem;
             line-height: 1.4;
         }
-        
-        .support-btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            box-sizing: border-box;
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem;
         }
-        
-        .support-btn.free {
-            background: #28a745;
-            color: white;
+        .plan-features li {
+            padding: 0.45rem 0;
+            font-size: 0.9rem;
+            color: #444;
+            border-bottom: 1px solid #f0f0f0;
+            padding-left: 1.4rem;
+            position: relative;
         }
-        
-        .support-btn.free:hover {
-            background: #218838;
+        .plan-features li:last-child { border-bottom: none; }
+        .plan-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--free-color);
+            font-weight: 600;
         }
-        
-        .support-btn.paid {
-            background: #667eea;
-            color: white;
-        }
-        
-        .support-btn.paid:hover {
-            background: #5a6fd8;
-        }
-        
-        .trust-section {
-            background: #f8f9fa;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
+        .plan-card.pro .plan-features li::before { color: var(--pro-color); }
+        .plan-card.business .plan-features li::before { color: var(--business-color); }
+        .plan-features li.inherited::before { color: #aaa; content: "·"; font-size: 1.3rem; top: 0.2rem; }
+
+        .plan-btn {
+            display: block;
             text-align: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
         }
-        
-        .trust-points {
-            max-width: 800px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        .plan-btn.free-btn {
+            background: var(--free-color);
+            color: white;
+        }
+        .plan-btn.free-btn:hover { background: #218838; }
+        .plan-btn.pro-btn {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 14px rgba(102, 126, 234, 0.35);
+        }
+        .plan-btn.pro-btn:hover { box-shadow: 0 6px 18px rgba(102, 126, 234, 0.5); }
+        .plan-btn.business-btn {
+            background: white;
+            color: var(--business-color);
+            border-color: var(--business-color);
+        }
+        .plan-btn.business-btn:hover {
+            background: var(--business-color);
+            color: white;
+        }
+
+        .pricing-note {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
             margin-top: 2rem;
         }
-        
-        .trust-point {
-            padding: 1rem;
+
+        /* Trust bar */
+        .trust-bar {
+            background: white;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
         }
-        
-        .trust-point h3 {
-            color: #333;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+        .trust-bar-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
         }
-        
-        .trust-point p {
-            color: #666;
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-size: 0.9rem;
-            line-height: 1.5;
+            color: var(--text-dark);
+            font-weight: 500;
         }
-        
-        .footer-cta {
+        .trust-item .icon { font-size: 1.1rem; }
+
+        /* Comparison table */
+        .compare-section {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+        }
+        .compare-section h2 {
             text-align: center;
-            padding: 2rem;
-            color: #666;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
         }
-        
-        @media (max-width: 768px) {
-            .pricing-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .tiers-grid {
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .compare-table th {
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 2px solid #eee;
+        }
+        .compare-table th:first-child { text-align: left; color: var(--text-light); font-weight: 400; }
+        .compare-table th.col-free { color: var(--free-color); }
+        .compare-table th.col-pro { color: var(--pro-color); }
+        .compare-table th.col-business { color: var(--business-color); }
+        .compare-table td {
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            text-align: center;
+            color: var(--text-dark);
+        }
+        .compare-table td:first-child {
+            text-align: left;
+            color: var(--text-dark);
+        }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table tr:hover td { background: #fafafa; }
+        .check { color: var(--free-color); font-weight: 700; }
+        .check-pro { color: var(--pro-color); font-weight: 700; }
+        .check-biz { color: var(--business-color); font-weight: 700; }
+        .dash { color: #ccc; }
+        .compare-section-header td {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.5rem 1rem;
+        }
+
+        /* Donate section */
+        .donate-section {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            padding: 2.5rem 2rem;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px var(--shadow);
+            text-align: center;
+        }
+        .donate-section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        .donate-section p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            max-width: 560px;
+            margin: 0 auto 1.75rem;
+        }
+        .donate-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .donate-btn {
+            padding: 0.6rem 1.4rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .donate-btn:hover {
+            border-color: var(--pro-color);
+            color: var(--pro-color);
+            background: #f8f9ff;
+        }
+
+        /* Coming soon notice */
+        .coming-soon-notice {
+            display: inline-block;
+            background: #fff8e6;
+            border: 1px solid #ffd966;
+            color: #7a5c00;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .pricing-grid {
                 grid-template-columns: 1fr;
+                max-width: 480px;
+                margin: 0 auto;
             }
-            
-            .trust-points {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
+            .plan-tagline { min-height: auto; }
+        }
+        @media (max-width: 600px) {
+            .pricing-hero h1 { font-size: 2rem; }
+            .trust-bar-inner { gap: 1.5rem; }
+            .compare-section { overflow-x: auto; }
         }
     </style>
 </head>
@@ -309,132 +415,259 @@
                 <a href="index.html">Home</a>
                 <a href="downloads.html">Download</a>
                 <a href="docs.html">Documentation</a>
-                <a href="pricing.html" class="active">Support</a>
+                <a href="pricing.html" class="active">Pricing</a>
             </div>
         </div>
     </nav>
 
     <div class="pricing-hero">
-        <h1>Support MDViewer</h1>
-        <p>Free for everyone. Support if you'd like. No strings attached.</p>
+        <h1>Pricing</h1>
+        <p>Free for personal use. One-time licenses for professional workflows. No subscriptions, no DRM, no lock-in.</p>
     </div>
 
-    <div class="philosophy">
-        <h2>A Different Approach</h2>
-        <p>MDViewer is completely free for personal and commercial use. Always will be. No license keys, no DRM, no feature limitations.</p>
-        <p>If you find MDViewer useful and want to show appreciation, you can choose to support its development. But this is entirely optional — a gesture of gratitude, not obligation.</p>
-        
-        <div class="highlight">
-            "No license keys. No DRM. Just a thank-you from me if you find MDViewer useful."
+    <!-- Plan cards -->
+    <section class="pricing-section">
+        <div class="pricing-grid">
+
+            <!-- Free -->
+            <div class="plan-card free">
+                <div class="plan-name">Free</div>
+                <div class="plan-price">$0 <span>forever</span></div>
+                <div class="plan-tagline">For personal use and local documentation</div>
+                <ul class="plan-features">
+                    <li>Full Markdown rendering (CommonMark + extensions)</li>
+                    <li>Auto-navigation and breadcrumb headers</li>
+                    <li>Document discovery and link resolution</li>
+                    <li>PDF and Word export</li>
+                    <li>Built-in editor</li>
+                    <li>Drag &amp; drop and file associations</li>
+                    <li>Dark and light themes</li>
+                    <li>No account, no telemetry</li>
+                </ul>
+                <a href="downloads.html" class="plan-btn free-btn">Download Free</a>
+            </div>
+
+            <!-- Pro -->
+            <div class="plan-card pro">
+                <div class="plan-badge">Best for individuals</div>
+                <div class="plan-name">Pro</div>
+                <div class="plan-price">$24 <span>one-time</span></div>
+                <div class="plan-tagline">For professionals with serious documentation workflows</div>
+                <div class="coming-soon-notice">In development — licenses available soon</div>
+                <ul class="plan-features">
+                    <li class="inherited">Everything in Free</li>
+                    <li>Custom PDF and Word export templates</li>
+                    <li>Branded output (logo, header, footer)</li>
+                    <li>Folder indexing and caching for large doc sets</li>
+                    <li>Favorites and pinned documents</li>
+                    <li>Multi-root workspaces</li>
+                    <li>Portable mode (no install required)</li>
+                    <li>Expanded themes and profile settings</li>
+                </ul>
+                <a href="mailto:support@cnrit.com?subject=MDViewer Pro — License Interest" class="plan-btn pro-btn">Get Notified</a>
+            </div>
+
+            <!-- Business -->
+            <div class="plan-card business">
+                <div class="plan-name">Business</div>
+                <div class="plan-price">$79 <span>per seat, one-time</span></div>
+                <div class="plan-tagline">For MSPs, IT departments, and documentation-heavy teams</div>
+                <div class="coming-soon-notice">In development — contact for early access</div>
+                <ul class="plan-features">
+                    <li class="inherited">Everything in Pro</li>
+                    <li>Shared documentation hubs</li>
+                    <li>Network folder and UNC path support</li>
+                    <li>Read-only and kiosk mode</li>
+                    <li>MSI and enterprise deployment packaging</li>
+                    <li>Priority support</li>
+                    <li>Business-use license clarity</li>
+                    <li>Volume pricing available</li>
+                </ul>
+                <a href="mailto:support@cnrit.com?subject=MDViewer Business — License Inquiry" class="plan-btn business-btn">Contact for Licensing</a>
+            </div>
+
+        </div>
+
+        <p class="pricing-note">All licenses are one-time purchases. No annual renewals. Your license works on any machine you own.</p>
+    </section>
+
+    <!-- Trust bar -->
+    <div class="trust-bar">
+        <div class="trust-bar-inner">
+            <div class="trust-item"><span class="icon">🔄</span> No subscriptions</div>
+            <div class="trust-item"><span class="icon">🔓</span> No DRM</div>
+            <div class="trust-item"><span class="icon">📁</span> Your files, your format</div>
+            <div class="trust-item"><span class="icon">🚫</span> No lock-in</div>
+            <div class="trust-item"><span class="icon">👤</span> No account required (Free)</div>
         </div>
     </div>
 
-    <div class="support-tiers">
-        <h2 style="text-align: center; margin-bottom: 1rem;">Choose Your Support Level</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 3rem;">All options give you the same full-featured MDViewer. The amount is just your way of saying thanks.</p>
-        
-        <div class="tiers-grid">
-            <div class="tier-card free">
-                <div class="tier-amount">$0</div>
-                <div class="tier-description">
-                    Perfect choice! Get MDViewer completely free with all features included.
-                </div>
-                <a href="downloads.html" class="support-btn free">
-                    Download Free
-                </a>
-            </div>
-            
-            <div class="tier-card">
-                <div class="tier-amount">$1</div>
-                <div class="tier-description">
-                    A coffee fund contribution. Small gesture, big appreciation!
-                </div>
-                <a href="#" onclick="supportWithStripe(100)" class="support-btn paid">
-                    Support with $1
-                </a>
-            </div>
-            
-            <div class="tier-card popular">
-                <div class="tier-amount">$2</div>
-                <div class="tier-description">
-                    The sweet spot. Covers hosting costs and shows you care.
-                </div>
-                <a href="#" onclick="supportWithStripe(200)" class="support-btn paid">
-                    Support with $2
-                </a>
-            </div>
-            
-            <div class="tier-card">
-                <div class="tier-amount">$5</div>
-                <div class="tier-description">
-                    Generous support that helps fund future development.
-                </div>
-                <a href="#" onclick="supportWithStripe(500)" class="support-btn paid">
-                    Support with $5
-                </a>
-            </div>
-            
-            <div class="tier-card">
-                <div class="tier-amount">$10</div>
-                <div class="tier-description">
-                    Incredible generosity that makes a real difference!
-                </div>
-                <a href="#" onclick="supportWithStripe(1000)" class="support-btn paid">
-                    Support with $10
-                </a>
+    <!-- Comparison table -->
+    <section class="compare-section">
+        <h2>What's included</h2>
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="col-free">Free</th>
+                    <th class="col-pro">Pro</th>
+                    <th class="col-business">Business</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="compare-section-header">
+                    <td colspan="4">Core viewing</td>
+                </tr>
+                <tr>
+                    <td>Markdown rendering (CommonMark + extensions)</td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Auto-navigation, breadcrumbs, document discovery</td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>PDF and Word export</td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Built-in editor, drag &amp; drop, file associations</td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr class="compare-section-header">
+                    <td colspan="4">Pro workflow features</td>
+                </tr>
+                <tr>
+                    <td>Custom export templates</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Branded PDF/Word output</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Folder indexing and caching</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Favorites and pinned documents</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Multi-root workspaces</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Portable mode</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Expanded themes and profile settings</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-pro">✓</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr class="compare-section-header">
+                    <td colspan="4">Business and deployment</td>
+                </tr>
+                <tr>
+                    <td>Shared documentation hubs</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Network folder and UNC path support</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Read-only / kiosk mode</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>MSI and enterprise deployment packaging</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Priority support</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Business-use license</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+                <tr>
+                    <td>Volume pricing</td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="dash">—</span></td>
+                    <td><span class="check-biz">✓</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Support the Project (donation section, separate from pricing) -->
+    <section style="max-width: 1100px; margin: 0 auto 4rem; padding: 0 2rem;">
+        <div class="donate-section">
+            <h2>Support the Project</h2>
+            <p>MDViewer is free software built in spare time. If it's saved you time and you'd like to say thanks, a small contribution helps cover hosting and development. Entirely optional — always.</p>
+            <div class="donate-buttons">
+                <button onclick="supportWithStripe(100)" class="donate-btn">$1 — coffee</button>
+                <button onclick="supportWithStripe(500)" class="donate-btn">$5 — a round</button>
+                <button onclick="supportWithStripe(1000)" class="donate-btn">$10 — generous</button>
+                <button onclick="supportWithStripe(2500)" class="donate-btn">$25 — thank you</button>
             </div>
         </div>
-    </div>
-
-    <div class="trust-section">
-        <h2>Built on Trust</h2>
-        <div class="trust-points">
-            <div class="trust-point">
-                <h3>🔓 No Lock-in</h3>
-                <p>Your files stay yours. MDViewer works with standard markdown — no proprietary formats.</p>
-            </div>
-            <div class="trust-point">
-                <h3>🎯 No Upselling</h3>
-                <p>What you see is what you get. No "premium" features hidden behind paywalls.</p>
-            </div>
-            <div class="trust-point">
-                <h3>💝 Just Gratitude</h3>
-                <p>Support is purely voluntary. We're grateful whether you pay $0 or $10.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-cta">
-        <p>Questions? <a href="mailto:support@mdviewer.app">Get in touch</a> — we're here to help.</p>
-    </div>
+    </section>
 
     <script>
         function supportWithStripe(amountCents) {
-            const amount = amountCents / 100;
-            
-            // Show loading state
             const button = event.target;
             const originalText = button.textContent;
             button.textContent = 'Processing...';
             button.disabled = true;
-            
-            // Call Cloudflare Worker to create Stripe Checkout session
+
             fetch('https://mdviewer-payments.YOUR_USERNAME.workers.dev/api/create-checkout', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ amount: amountCents })
             })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!response.ok) throw new Error('Network response was not ok');
                 return response.json();
             })
             .then(data => {
                 if (data.url) {
-                    // Redirect to Stripe Checkout
                     window.location.href = data.url;
                 } else {
                     throw new Error('No checkout URL received');
@@ -442,46 +675,32 @@
             })
             .catch(error => {
                 console.error('Payment error:', error);
-                alert('Payment setup failed. Please try again or contact support.');
-                
-                // Restore button state
+                alert('Payment setup failed. Please try again or contact support@cnrit.com.');
                 button.textContent = originalText;
                 button.disabled = false;
             });
         }
 
-        // Handle cancelled payments (if user returns from Stripe)
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('cancelled') === 'true') {
-                const message = document.createElement('div');
-                message.style.cssText = 'background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 1rem; border-radius: 8px; margin: 1rem auto; max-width: 600px; text-align: center;';
-                message.innerHTML = '⚠️ Payment was cancelled. No worries - you can still <a href="downloads.html">download MDViewer for free</a>!';
-                document.querySelector('.support-tiers').prepend(message);
+                const msg = document.createElement('div');
+                msg.style.cssText = 'background:#fff3cd;border:1px solid #ffeaa7;color:#856404;padding:1rem;border-radius:8px;margin:0 auto 1.5rem;max-width:600px;text-align:center;';
+                msg.innerHTML = 'Payment was cancelled — no worries. <a href="downloads.html" style="color:inherit;">Download MDViewer free</a> any time.';
+                document.querySelector('.donate-section').prepend(msg);
             }
-            
-            // Add hover effects
-            const cards = document.querySelectorAll('.tier-card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
         });
     </script>
-    
-    <footer style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); text-align: center; padding: 2rem 0; margin-top: 3rem; border-top: 1px solid rgba(0,0,0,0.1);">
+
+    <footer style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); text-align: center; padding: 2rem 0; margin-top: 1rem; border-top: 1px solid rgba(0,0,0,0.1);">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
             <p style="color: var(--text-dark); margin: 0;">
-                &copy; 2025 MDViewer. Built for Windows documentation professionals.
+                &copy; 2026 MDViewer. Built for Windows documentation professionals.
             </p>
             <p style="color: var(--text-light); margin-top: 0.5rem;">
-                <a href="index.html" style="color: var(--text-dark); text-decoration: none;">Home</a> • 
-                <a href="downloads.html" style="color: var(--text-dark); text-decoration: none;">Download</a> • 
-                <a href="docs.html" style="color: var(--text-dark); text-decoration: none;">Documentation</a> • 
+                <a href="index.html" style="color: var(--text-dark); text-decoration: none;">Home</a> &bull;
+                <a href="downloads.html" style="color: var(--text-dark); text-decoration: none;">Download</a> &bull;
+                <a href="docs.html" style="color: var(--text-dark); text-decoration: none;">Documentation</a> &bull;
                 <a href="https://github.com/MDViewer-App/mdviewer.app/releases" style="color: var(--text-dark); text-decoration: none;">GitHub Releases</a>
             </p>
             <p style="color: var(--text-light); margin-top: 1rem; font-size: 0.9rem;">
