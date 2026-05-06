@@ -304,6 +304,104 @@
             box-shadow: 0 4px 15px var(--shadow);
         }
         
+        /* Upgrade teaser */
+        .upgrade-teaser {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding: 0 2rem;
+        }
+        .upgrade-teaser-inner {
+            background: linear-gradient(135deg, #f0f2ff 0%, #f8f0ff 100%);
+            border: 1px solid #d8d0f0;
+            border-radius: 14px;
+            padding: 2rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .upgrade-teaser-text h3 {
+            margin: 0 0 0.4rem;
+            font-size: 1.15rem;
+            color: #3d3d8f;
+        }
+        .upgrade-teaser-text p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            max-width: 560px;
+        }
+        .upgrade-teaser-text p strong {
+            color: var(--text-dark);
+        }
+        .upgrade-teaser-btn {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.7rem 1.6rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+            transition: box-shadow 0.2s ease;
+            flex-shrink: 0;
+        }
+        .upgrade-teaser-btn:hover {
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.45);
+        }
+
+        /* Support section */
+        .support-section {
+            max-width: 1200px;
+            margin: 2.5rem auto 0;
+            padding: 0 2rem;
+        }
+        .support-section-inner {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 14px;
+            padding: 2rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+        .support-section-inner h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+        .support-section-inner p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            max-width: 520px;
+            margin: 0 auto 1.5rem;
+        }
+        .donate-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .donate-btn {
+            padding: 0.55rem 1.3rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            color: var(--text-dark);
+            font-size: 0.88rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .donate-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: #f8f0ff;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .download-hero h1 {
@@ -364,6 +462,31 @@
             <div class="download-card" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
                 <h3>🔄 Loading Download Options...</h3>
                 <p>Please wait while we fetch the latest release information.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upgrade teaser -->
+    <div class="upgrade-teaser">
+        <div class="upgrade-teaser-inner">
+            <div class="upgrade-teaser-text">
+                <h3>Need more from MDViewer?</h3>
+                <p>Pro adds <strong>custom export templates, branded output, folder indexing, multi-root workspaces,</strong> and more — for a one-time $24. Business adds shared documentation hubs, enterprise deployment, and priority support at $79/seat/year.</p>
+            </div>
+            <a href="pricing.html" class="upgrade-teaser-btn">View Pro &amp; Business</a>
+        </div>
+    </div>
+
+    <!-- Support the Project -->
+    <div class="support-section">
+        <div class="support-section-inner">
+            <h3>Support the Project</h3>
+            <p>MDViewer is free and always will be for personal use. If it's saved you time, a small contribution helps keep development going — entirely optional.</p>
+            <div class="donate-buttons">
+                <a href="https://cash.app/$JonJaques/1" target="_blank" rel="noopener noreferrer" class="donate-btn">$1 — coffee</a>
+                <a href="https://cash.app/$JonJaques/5" target="_blank" rel="noopener noreferrer" class="donate-btn">$5 — a round</a>
+                <a href="https://cash.app/$JonJaques/10" target="_blank" rel="noopener noreferrer" class="donate-btn">$10 — generous</a>
+                <a href="https://cash.app/$JonJaques/25" target="_blank" rel="noopener noreferrer" class="donate-btn">$25 — thank you</a>
             </div>
         </div>
     </div>
