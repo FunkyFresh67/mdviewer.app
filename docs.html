@@ -329,6 +329,7 @@
                     <li><a href="#editor">✏️ Built-in Editor</a></li>
                     <li><a href="#export">📄 Export Features</a></li>
                     <li><a href="#enterprise">🏢 Enterprise Features</a></li>
+                    <li><a href="#controls">🔌 Embeddable Controls Library</a></li>
                     <li><a href="#keyboard">⌨️ Keyboard Shortcuts</a></li>
                     <li><a href="#troubleshooting">🔧 Troubleshooting</a></li>
                     <li><a href="#advanced">🚀 Advanced Usage</a></li>
@@ -704,7 +705,7 @@ Get-FileHash .\MDViewer-Setup.msi -Algorithm SHA256
                     <h4>Silent Installation for Teams</h4>
                     <pre><code># PowerShell deployment script
 # Get the latest release URL programmatically
-$repo = "MDViewer-App/mdviewer.app"
+$repo = "MDViewer-App/mdviewer-core"
 $releases = Invoke-RestMethod -Uri "https://api.github.com/repos/$repo/releases/latest"
 $installerUrl = $releases.assets | Where-Object { $_.name -like "*Setup.msi" } | Select-Object -ExpandProperty browser_download_url
 $installerPath = "$env:TEMP\MDViewer-Setup.msi"
@@ -730,6 +731,57 @@ Remove-Item $installerPath -Force</code></pre>
                 </div>
             </section>
             
+            <section id="controls" class="section">
+                <h2>🔌 Embeddable Controls Library</h2>
+                <p><strong>New in v1.7.0.</strong> <code>MarkdownViewer.Controls</code> packages the full MDViewer rendering engine as a WinForms <code>UserControl</code> you can drop into any .NET Windows desktop application — no infrastructure, no separate process, no WebSocket server.</p>
+
+                <div class="card info">
+                    <h4>What you get out of the box</h4>
+                    <ul>
+                        <li>Full GitHub-flavored markdown rendering via Markdig and WebView2</li>
+                        <li>Built-in navigation bar — ◀ Back button, breadcrumb label, full history stack</li>
+                        <li><code>Alt+←</code> and <code>Ctrl+R</code> wired correctly through the markdown parser</li>
+                        <li>PDF export (<code>ExportPdfAsync</code>) and Word export (<code>ExportWordAsync</code>)</li>
+                        <li><code>FileNavigated</code> and <code>CanNavigateBackChanged</code> events for host integration</li>
+                        <li><code>MarkdownViewerOptions</code> for configuring zoom, nav bar, and navigation enhancements</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Target frameworks</h4>
+                    <table>
+                        <thead><tr><th>Target</th><th>Rendering</th><th>Navigation</th><th>Word Export</th><th>PDF Export</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>.NET 8</strong> (net8.0-windows)</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                            <tr><td><strong>.NET Framework 4.8</strong> (net48)</td><td>✅</td><td>✅</td><td>✅</td><td>— ¹</td></tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top:0.75rem; font-size:0.9em;">¹ PDF export requires .NET 6+. On net48 the method throws <code>PlatformNotSupportedException</code> with a clear upgrade message — everything else works today.</p>
+                </div>
+
+                <div class="card">
+                    <h4>Quick start (C#)</h4>
+                    <pre><code>var viewer = new MarkdownViewer.Controls.MarkdownViewerControl();
+viewer.Dock = DockStyle.Fill;
+this.Controls.Add(viewer);
+viewer.LoadFile(@"C:\docs\README.md");</code></pre>
+                </div>
+
+                <div class="card">
+                    <h4>Quick start (VB.NET)</h4>
+                    <pre><code>Dim viewer As New MarkdownViewer.Controls.MarkdownViewerControl()
+viewer.Dock = DockStyle.Fill
+Me.Controls.Add(viewer)
+viewer.LoadFile("C:\docs\README.md")</code></pre>
+                </div>
+
+                <div class="card info">
+                    <h4>Available through professional services</h4>
+                    <p>The <code>MarkdownViewer.Controls</code> library is available as part of a professional services engagement. We help your team integrate, extend, and support it — custom theming, authentication-gated content, search integration, or anything else your application needs.</p>
+                    <p><strong>Contact us:</strong> <a href="mailto:support@cnrit.com">support@cnrit.com</a></p>
+                </div>
+            </section>
+
             <section id="keyboard" class="section">
                 <h2>⌨️ Keyboard Shortcuts</h2>
                 
@@ -770,12 +822,32 @@ Remove-Item $installerPath -Force</code></pre>
                         </tr>
                         <tr>
                             <td><strong>Refresh</strong></td>
-                            <td><code>F5</code></td>
-                            <td>Reload current document (WebView2 native)</td>
+                            <td><code>F5</code> or <code>Ctrl+R</code></td>
+                            <td>Reload and re-parse current document through the markdown engine</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Navigate Back</strong></td>
+                            <td><code>Alt+←</code></td>
+                            <td>Go back to the previously viewed document</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Open File</strong></td>
+                            <td><code>Ctrl+O</code></td>
+                            <td>Open file picker to load a markdown file</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Edit in External Editor</strong></td>
+                            <td><code>Ctrl+E</code></td>
+                            <td>Open current file in configured external editor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Print / Export PDF</strong></td>
+                            <td><code>Ctrl+P</code></td>
+                            <td>Open print/PDF export dialog</td>
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <h3>Menu Access</h3>
                 <p>Use the application menus for features that don't have working keyboard shortcuts:</p>
                 <ul>
@@ -844,9 +916,15 @@ Remove-Item $installerPath -Force</code></pre>
                 </div>
                 
                 <div class="card warning">
+                    <h4>Navigation or Reload Errors</h4>
+                    <p><strong>Problem:</strong> Pressing <code>Ctrl+R</code> or <code>Alt+←</code> shows a "file not found" error or blank page</p>
+                    <p><strong>Solution:</strong> Update to v1.7.0 or later. Earlier versions allowed WebView2 to handle these shortcuts natively, causing it to reload deleted temp files. Both shortcuts now route correctly through the markdown parser.</p>
+                </div>
+
+                <div class="card warning">
                     <h4>Threading Errors</h4>
                     <p><strong>Problem:</strong> "CoreWebView2 can only be accessed from the UI thread" error</p>
-                    <p><strong>Solution:</strong> Update to the latest version of MDViewer - this critical issue was resolved in v1.4.4.</p>
+                    <p><strong>Solution:</strong> Update to the latest version of MDViewer — this was resolved in v1.4.4.</p>
                 </div>
                 
                 <div class="card warning">
