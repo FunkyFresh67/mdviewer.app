@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDViewer Blog — Tips, Updates, and Markdown Guides</title>
+    <meta name="description" content="The MDViewer blog — product updates, markdown tips, documentation workflow guides, and development news for Windows users.">
+    <link rel="canonical" href="https://mdviewer.app/blog.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MDViewer">
+    <meta property="og:url" content="https://mdviewer.app/blog.html">
+    <meta property="og:title" content="MDViewer Blog — Tips, Updates, and Markdown Guides">
+    <meta property="og:description" content="The MDViewer blog — product updates, markdown tips, documentation workflow guides, and development news for Windows users.">
+    <meta property="og:image" content="https://mdviewer.app/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MDViewer Blog — Tips, Updates, and Markdown Guides">
+    <meta name="twitter:description" content="The MDViewer blog — product updates, markdown tips, documentation workflow guides, and development news for Windows users.">
+    <meta name="twitter:image" content="https://mdviewer.app/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "MDViewer Blog",
+      "description": "Product updates, markdown tips, and documentation workflow guides.",
+      "url": "https://mdviewer.app/blog.html",
+      "publisher": {
+        "@type": "Person",
+        "name": "Jon Jaques"
+      }
+    }
+    </script>
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "utfkjavsme");
+    </script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-color: #764ba2;
+            --text-dark: #333;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --shadow-hover: rgba(0, 0, 0, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1100px;
+        }
+
+        .nav-brand { font-size: 1.5rem; font-weight: bold; }
+
+        .nav-brand a {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+            background: rgba(118, 75, 162, 0.1);
+        }
+
+        .blog-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 3.5rem 0 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-header h1 {
+            margin: 0 0 0.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+
+        .blog-header p {
+            margin: 0;
+            opacity: 0.85;
+            font-size: 1.15rem;
+        }
+
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+            padding-bottom: 5rem;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px var(--shadow);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .post-card:hover {
+            box-shadow: 0 8px 24px var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .post-date {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .post-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            background: rgba(118, 75, 162, 0.1);
+            padding: 0.2rem 0.65rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .post-card h2 {
+            margin: 0 0 0.65rem;
+            font-size: 1.45rem;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .post-card p {
+            margin: 0 0 1rem;
+            color: var(--text-light);
+            line-height: 1.65;
+        }
+
+        .read-more {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p { margin: 0.25rem 0; opacity: 0.9; }
+
+        footer a { color: white; text-decoration: none; opacity: 0.85; }
+        footer a:hover { opacity: 1; }
+
+        @media (max-width: 600px) {
+            .blog-header h1 { font-size: 2rem; }
+            .nav-links { gap: 1rem; }
+            .post-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container" style="max-width:1100px">
+            <div class="nav-brand">
+                <a href="index.html">MDViewer</a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="downloads.html">Download</a>
+                <a href="docs.html">Documentation</a>
+                <a href="pricing.html">Support</a>
+                <a href="blog.html" class="active">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="blog-header">
+        <div class="container">
+            <h1>Blog</h1>
+            <p>Product updates, markdown tips, and documentation workflow guides.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="post-list">
+
+            <a href="blog/welcome-to-the-mdviewer-blog.html" class="post-card">
+                <div class="post-meta">
+                    <span class="post-date">May 8, 2026</span>
+                    <span class="post-tag">Announcement</span>
+                </div>
+                <h2>Welcome to the MDViewer Blog</h2>
+                <p>Introducing the official MDViewer blog — where we'll share product updates, tips for getting the most out of your markdown workflow, and behind-the-scenes development news.</p>
+                <span class="read-more">Read more →</span>
+            </a>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MDViewer. Built for Windows documentation professionals.</p>
+        <p style="margin-top: 0.5rem;"><a href="docs.html">Documentation</a> • <a href="https://github.com/MDViewer-App/mdviewer-core/releases">GitHub Releases</a></p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Created by <a href="https://www.linkedin.com/in/jonjaques/" target="_blank" rel="noopener noreferrer">Jon Jaques</a></p>
+    </footer>
+</body>
+</html>

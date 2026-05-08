@@ -20,4 +20,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://mdviewer.app/blog.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mdviewer.app/blog/welcome-to-the-mdviewer-blog.html</loc>
+    <changefreq>never</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>

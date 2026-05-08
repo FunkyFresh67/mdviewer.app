@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the MDViewer Blog — MDViewer</title>
+    <meta name="description" content="Introducing the official MDViewer blog — where we'll share product updates, markdown tips, documentation workflow guides, and behind-the-scenes development news.">
+    <link rel="canonical" href="https://mdviewer.app/blog/welcome-to-the-mdviewer-blog.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="MDViewer">
+    <meta property="og:url" content="https://mdviewer.app/blog/welcome-to-the-mdviewer-blog.html">
+    <meta property="og:title" content="Welcome to the MDViewer Blog">
+    <meta property="og:description" content="Introducing the official MDViewer blog — product updates, markdown tips, and documentation workflow guides.">
+    <meta property="og:image" content="https://mdviewer.app/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Welcome to the MDViewer Blog">
+    <meta name="twitter:description" content="Introducing the official MDViewer blog — product updates, markdown tips, and documentation workflow guides.">
+    <meta name="twitter:image" content="https://mdviewer.app/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Welcome to the MDViewer Blog",
+      "datePublished": "2026-05-08",
+      "author": {
+        "@type": "Person",
+        "name": "Jon Jaques",
+        "url": "https://www.linkedin.com/in/jonjaques/"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Jon Jaques"
+      },
+      "url": "https://mdviewer.app/blog/welcome-to-the-mdviewer-blog.html",
+      "description": "Introducing the official MDViewer blog — product updates, markdown tips, and documentation workflow guides."
+    }
+    </script>
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "utfkjavsme");
+    </script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-color: #764ba2;
+            --text-dark: #333;
+            --text-light: #666;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1100px;
+        }
+
+        .nav-brand { font-size: 1.5rem; font-weight: bold; }
+
+        .nav-brand a {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+            background: rgba(118, 75, 162, 0.1);
+        }
+
+        .post-hero {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 3.5rem 0 3rem;
+            margin-bottom: 0;
+        }
+
+        .post-hero .back-link {
+            display: inline-block;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+            transition: color 0.2s;
+        }
+
+        .post-hero .back-link:hover { color: white; }
+
+        .post-hero h1 {
+            margin: 0 0 1rem;
+            font-size: 2.4rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .post-hero-meta {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0.9;
+        }
+
+        .post-date { font-size: 0.9rem; }
+
+        .post-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            background: rgba(255,255,255,0.2);
+            padding: 0.2rem 0.65rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .post-body {
+            background: white;
+            border-radius: 0 0 14px 14px;
+            padding: 3rem 3rem 3.5rem;
+            box-shadow: 0 4px 16px var(--shadow);
+            margin-bottom: 3rem;
+            line-height: 1.75;
+            font-size: 1.05rem;
+        }
+
+        .post-body h2 {
+            font-size: 1.4rem;
+            margin: 2rem 0 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .post-body p { margin: 0 0 1.25rem; color: #444; }
+
+        .post-body ul {
+            padding-left: 1.5rem;
+            margin: 0 0 1.25rem;
+            color: #444;
+        }
+
+        .post-body ul li { margin-bottom: 0.4rem; }
+
+        .post-body a { color: var(--primary-color); }
+
+        .post-body a:hover { text-decoration: underline; }
+
+        .post-footer {
+            border-top: 1px solid #f0f0f0;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .author-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .back-to-blog {
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-to-blog:hover { text-decoration: underline; }
+
+        footer {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p { margin: 0.25rem 0; opacity: 0.9; }
+        footer a { color: white; text-decoration: none; opacity: 0.85; }
+        footer a:hover { opacity: 1; }
+
+        @media (max-width: 600px) {
+            .post-hero h1 { font-size: 1.8rem; }
+            .post-body { padding: 2rem 1.5rem; }
+            .nav-links { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container" style="max-width:1100px">
+            <div class="nav-brand">
+                <a href="../index.html">MDViewer</a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../downloads.html">Download</a>
+                <a href="../docs.html">Documentation</a>
+                <a href="../pricing.html">Support</a>
+                <a href="../blog.html" class="active">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="post-hero">
+        <div class="container">
+            <a href="../blog.html" class="back-link">← Back to Blog</a>
+            <h1>Welcome to the MDViewer Blog</h1>
+            <div class="post-hero-meta">
+                <span class="post-date">May 8, 2026</span>
+                <span class="post-tag">Announcement</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="post-body">
+            <p>After a couple of years of building and quietly shipping MDViewer, I'm finally starting a blog. This is where I'll share what's new, what I'm working on, and anything useful I've picked up along the way about markdown, documentation, and building software for Windows.</p>
+
+            <h2>What to expect here</h2>
+            <ul>
+                <li><strong>Release notes with context</strong> — not just changelogs, but the why behind new features and the tradeoffs I made.</li>
+                <li><strong>Markdown tips</strong> — patterns and techniques that work well in MDViewer and beyond.</li>
+                <li><strong>Documentation workflow guides</strong> — how to structure and maintain documentation for real projects.</li>
+                <li><strong>Development updates</strong> — what's on the roadmap, what I'm experimenting with, and honest notes on what didn't work.</li>
+            </ul>
+
+            <h2>A little background</h2>
+            <p>MDViewer started as a personal tool — I needed something that could handle large markdown documentation trees without slowing down, render things cleanly, and stay out of the way. The Windows app ecosystem didn't have quite what I wanted, so I built it.</p>
+            <p>It's grown significantly since then. The <a href="../docs.html#controls">MarkdownViewer.Controls embeddable component</a>, PDF and Word export, the documentation hub mode — these all came from real workflows I (and users who reached out) actually needed.</p>
+
+            <h2>Stay in the loop</h2>
+            <p>The best way to follow along is to bookmark <a href="../blog.html">the blog</a> or watch the <a href="https://github.com/MDViewer-App/mdviewer-core/releases" target="_blank" rel="noopener noreferrer">GitHub releases page</a>. No newsletter yet — maybe someday.</p>
+            <p>If you have a feature request, a workflow you're trying to solve, or just want to say hello, the <a href="../pricing.html">Support page</a> has ways to reach me.</p>
+
+            <div class="post-footer">
+                <div class="author">
+                    <div class="author-avatar">JJ</div>
+                    <span>Jon Jaques</span>
+                </div>
+                <a href="../blog.html" class="back-to-blog">← All posts</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MDViewer. Built for Windows documentation professionals.</p>
+        <p style="margin-top: 0.5rem;"><a href="../docs.html">Documentation</a> • <a href="https://github.com/MDViewer-App/mdviewer-core/releases">GitHub Releases</a></p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Created by <a href="https://www.linkedin.com/in/jonjaques/" target="_blank" rel="noopener noreferrer">Jon Jaques</a></p>
+    </footer>
+</body>
+</html>
