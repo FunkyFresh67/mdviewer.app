@@ -245,6 +245,42 @@
         footer a { color: white; text-decoration: none; opacity: 0.85; }
         footer a:hover { opacity: 1; }
 
+        /* Ad slot */
+        .ad-slot {
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .ad-slot-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #bbb;
+            margin-bottom: 0.5rem;
+            align-self: flex-start;
+        }
+
+        .ad-slot-inner {
+            width: 100%;
+            min-height: 130px;
+            border-radius: 8px;
+            border: 1px dashed #e0e0e0;
+            background: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hide the placeholder border once an ad network populates the slot */
+        .ad-slot-inner:not(:empty) {
+            border: none;
+            background: none;
+            min-height: unset;
+        }
+
         @media (max-width: 600px) {
             .post-hero h1 { font-size: 1.8rem; }
             .post-body { padding: 2rem 1.5rem; }
@@ -282,6 +318,24 @@
     <div class="container">
         <div class="post-body">
             <p>After a couple of years of building and quietly shipping MDViewer, I'm finally starting a blog. This is where I'll share what's new, what I'm working on, and anything useful I've picked up along the way about markdown, documentation, and building software for Windows.</p>
+
+            <!-- Ad slot — activate by uncommenting one of the blocks below.
+
+                 OPTION A: EthicalAds (recommended — developer-focused, no trackers)
+                 Sign up at https://www.ethicalads.io then replace YOUR-PUBLISHER-ID:
+
+                 <div data-ea-publisher="YOUR-PUBLISHER-ID" data-ea-type="text"></div>
+                 <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+
+                 OPTION B: Carbon Ads
+                 Sign up at https://www.carbonads.net then replace YOURCODE and YOURPLACEMENT:
+
+                 <script async src="//cdn.carbonads.com/carbon.js?serve=YOURCODE&placement=YOURPLACEMENT" id="_carbonads_js"></script>
+            -->
+            <div class="ad-slot">
+                <span class="ad-slot-label">Advertisement</span>
+                <div class="ad-slot-inner"></div>
+            </div>
 
             <h2>What to expect here</h2>
             <ul>
