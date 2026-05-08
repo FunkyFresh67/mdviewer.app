@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /download-access.html
+
+Sitemap: https://mdviewer.app/sitemap.xml
