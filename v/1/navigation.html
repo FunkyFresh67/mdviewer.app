@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Getting Lost in Your Docs — MDViewer Smart Navigation</title>
+    <meta name="description" content="MDViewer maps your entire markdown folder structure and makes it clickable. Breadcrumbs, local menus, auto-links — navigate thousands of files without thinking about it.">
+    <link rel="canonical" href="https://mdviewer.app/v/1/navigation.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MDViewer">
+    <meta property="og:url" content="https://mdviewer.app/v/1/navigation.html">
+    <meta property="og:title" content="Stop Getting Lost in Your Docs — MDViewer">
+    <meta property="og:description" content="MDViewer maps your entire markdown folder structure and makes it clickable. Breadcrumbs, local menus, auto-links — navigate thousands of files without thinking about it.">
+    <meta property="og:image" content="https://mdviewer.app/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Stop Getting Lost in Your Docs — MDViewer">
+    <meta name="twitter:description" content="MDViewer maps your entire markdown folder structure and makes it clickable. Navigate thousands of files without thinking about it.">
+    <meta name="twitter:image" content="https://mdviewer.app/og-image.png">
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "utfkjavsme");
+    </script>
+    <style>
+        :root {
+            --grad: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --purple: #764ba2;
+            --blue: #667eea;
+            --dark: #1a1a2e;
+            --text: #333;
+            --muted: #666;
+            --light-bg: #f8f9fa;
+            --white: #fff;
+            --shadow: 0 4px 24px rgba(102,126,234,0.15);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: var(--white); }
+
+        /* Nav */
+        nav { background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 12px rgba(0,0,0,0.08); }
+        .nav-brand { font-size: 1.4rem; font-weight: 700; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; }
+        .nav-cta { background: var(--grad); color: white; padding: 0.55rem 1.4rem; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: opacity 0.2s, transform 0.2s; }
+        .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+        /* Hero */
+        .hero { background: var(--grad); color: white; padding: 6rem 2rem 5rem; text-align: center; }
+        .hero-eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; margin-bottom: 1.25rem; }
+        .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .hero h1 em { font-style: normal; text-decoration: underline; text-decoration-color: rgba(255,255,255,0.5); text-underline-offset: 6px; }
+        .hero-sub { font-size: clamp(1rem, 2.5vw, 1.25rem); opacity: 0.88; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.6; }
+        .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { background: white; color: var(--purple); padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .btn-ghost { border: 2px solid rgba(255,255,255,0.6); color: white; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: background 0.2s; }
+        .btn-ghost:hover { background: rgba(255,255,255,0.15); }
+
+        /* Pain section */
+        .pain { background: var(--dark); color: white; padding: 5rem 2rem; text-align: center; }
+        .pain h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 1rem; }
+        .pain p { font-size: 1.1rem; opacity: 0.75; max-width: 560px; margin: 0 auto 3rem; line-height: 1.7; }
+        .pain-list { display: flex; flex-direction: column; gap: 1rem; max-width: 560px; margin: 0 auto; text-align: left; }
+        .pain-item { background: rgba(255,255,255,0.06); border-left: 3px solid rgba(102,126,234,0.6); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 1rem; opacity: 0.85; line-height: 1.5; }
+
+        /* Solution */
+        .section { padding: 5rem 2rem; }
+        .section-inner { max-width: 1000px; margin: 0 auto; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); margin-bottom: 0.75rem; }
+        .section h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+        .section .lead { font-size: 1.1rem; color: var(--muted); line-height: 1.7; max-width: 620px; margin-bottom: 3rem; }
+        .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .benefit { background: var(--light-bg); border-radius: 14px; padding: 1.75rem; }
+        .benefit-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+        .benefit h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .benefit p { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+
+        /* Steps */
+        .steps-section { background: var(--light-bg); padding: 5rem 2rem; }
+        .steps { display: flex; flex-direction: column; gap: 0; max-width: 560px; margin: 2rem auto 0; }
+        .step { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.5rem 0; border-bottom: 1px solid #e8e8e8; }
+        .step:last-child { border-bottom: none; }
+        .step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--grad); color: white; font-weight: 800; font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .step-text h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .step-text p { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
+
+        /* Quote */
+        .quote-section { padding: 4rem 2rem; text-align: center; background: white; }
+        .pull-quote { font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700; font-style: italic; max-width: 700px; margin: 0 auto; line-height: 1.35; color: var(--dark); }
+        .pull-quote span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* CTA section */
+        .cta-section { background: var(--grad); color: white; padding: 6rem 2rem; text-align: center; }
+        .cta-section h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
+        .cta-section p { font-size: 1.1rem; opacity: 0.85; margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+        .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .btn-white { background: white; color: var(--purple); padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .btn-outline-white { border: 2px solid rgba(255,255,255,0.6); color: white; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: background 0.2s; }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.15); }
+        .donate-nudge { font-size: 0.9rem; opacity: 0.7; }
+        .donate-nudge a { color: white; }
+
+        footer { background: #1a1a2e; color: rgba(255,255,255,0.6); padding: 2rem; text-align: center; font-size: 0.85rem; }
+        footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+        footer a:hover { color: white; }
+
+        @media (max-width: 600px) {
+            .hero { padding: 4rem 1.5rem 3rem; }
+            .section, .steps-section, .pain, .cta-section { padding: 3.5rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="../../index.html" class="nav-brand">MDViewer</a>
+    <a href="../../downloads.html" class="nav-cta">Download Free →</a>
+</nav>
+
+<section class="hero">
+    <p class="hero-eyebrow">Smart Navigation System</p>
+    <h1>Stop Getting Lost<br>in <em>Your Own Docs</em></h1>
+    <p class="hero-sub">MDViewer maps your entire markdown folder structure and makes it instantly clickable. Breadcrumbs, local file menus, automatic cross-links — every file, always one click away.</p>
+    <div class="hero-ctas">
+        <a href="../../downloads.html" class="btn-primary">Download Free</a>
+        <a href="../../pricing.html" class="btn-ghost">Get Pro — $19/year</a>
+    </div>
+</section>
+
+<section class="pain">
+    <h2>Sound familiar?</h2>
+    <p>If you're managing more than a handful of markdown files, you know the pain.</p>
+    <div class="pain-list">
+        <div class="pain-item">You alt-tab to Explorer every time you need to open a related file — breaking your focus every few minutes.</div>
+        <div class="pain-item">You have no idea where you are in the folder hierarchy without mentally reconstructing the path.</div>
+        <div class="pain-item">Jumping between docs means File → Open every single time. It adds up.</div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-inner">
+        <p class="section-label">The Solution</p>
+        <h2>Navigation that actually understands your docs</h2>
+        <p class="lead">MDViewer doesn't just open files — it understands the structure around them. It knows what folder you're in, what's next to you, and where you came from.</p>
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">🧭</div>
+                <h3>Breadcrumb Trails</h3>
+                <p>A persistent breadcrumb bar shows your exact position in the hierarchy at all times. Click any level to jump there instantly. You always know where you are.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">📂</div>
+                <h3>Local File Menus</h3>
+                <p>Every document shows a sidebar listing all other files in the same folder — and their subdirectories. Browse sideways and down without ever touching Explorer.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">🔗</div>
+                <h3>Automatic Cross-Links</h3>
+                <p>MDViewer detects and resolves relative links between your docs. Click a link in a file and it opens right there — no browser, no new window, no broken paths.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">⏪</div>
+                <h3>Full Back/Forward History</h3>
+                <p>Every document you open is tracked in history. Navigate back and forward with keyboard shortcuts or toolbar buttons, just like a browser.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">🌳</div>
+                <h3>Parent/Child Relationships</h3>
+                <p>MDViewer understands folder hierarchies and surfaces parent documents and child directories as first-class navigation targets.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">⚡</div>
+                <h3>Instant, No Indexing</h3>
+                <p>No database, no background indexing, no waiting. Open a folder and navigation is live immediately, even for thousands of files.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="steps-section">
+    <div class="section-inner" style="text-align:center">
+        <p class="section-label">How it works</p>
+        <h2>Three seconds to effortless navigation</h2>
+    </div>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+                <h3>Open any .md file or folder</h3>
+                <p>Drag and drop, double-click, or use File → Open. MDViewer immediately reads the surrounding folder context.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+                <h3>MDViewer maps the structure</h3>
+                <p>The breadcrumb trail and local file panel populate instantly. Every sibling, parent, and child directory appears automatically.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+                <h3>Navigate freely</h3>
+                <p>Click links, browse the file panel, jump breadcrumbs, hit back. Your docs are a connected web, not a pile of files.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="quote-section">
+    <p class="pull-quote">"Your docs aren't a collection of files. They're a <span>connected knowledge base</span>. MDViewer treats them that way."</p>
+</section>
+
+<section class="cta-section">
+    <h2>Ready to actually navigate your docs?</h2>
+    <p>Free to download. No account. No subscription. Works on Windows 10 and 11.</p>
+    <div class="cta-row">
+        <a href="../../downloads.html" class="btn-white">Download Free</a>
+        <a href="../../pricing.html" class="btn-outline-white">Get Pro — $19/year</a>
+    </div>
+    <p class="donate-nudge">Love it but don't need Pro? <a href="https://cash.app/$JonJaques/5" target="_blank" rel="noopener noreferrer">Buy me a coffee</a> — it keeps development going.</p>
+</section>
+
+<footer>
+    <p><a href="../../index.html">MDViewer</a> &nbsp;·&nbsp; <a href="../../downloads.html">Download</a> &nbsp;·&nbsp; <a href="../../docs.html">Docs</a> &nbsp;·&nbsp; <a href="../../pricing.html">Pricing</a> &nbsp;·&nbsp; <a href="../../blog.html">Blog</a></p>
+    <p style="margin-top:0.5rem">&copy; 2026 MDViewer — Built for Windows documentation professionals.</p>
+</footer>
+
+</body>
+</html>

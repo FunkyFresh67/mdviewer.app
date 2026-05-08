@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a Markdown Viewer to Your .NET App in Minutes — MarkdownViewer.Controls</title>
+    <meta name="description" content="MarkdownViewer.Controls is the complete MDViewer engine as a drop-in WinForms UserControl. Full rendering, navigation, breadcrumbs, and PDF export in your .NET 8 or .NET Framework 4.8 app.">
+    <link rel="canonical" href="https://mdviewer.app/v/1/embed.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MDViewer">
+    <meta property="og:url" content="https://mdviewer.app/v/1/embed.html">
+    <meta property="og:title" content="Add a Markdown Viewer to Your .NET App in Minutes — MarkdownViewer.Controls">
+    <meta property="og:description" content="Drop-in WinForms UserControl with full MDViewer rendering, navigation, and PDF/Word export. Works with .NET 8 and .NET Framework 4.8.">
+    <meta property="og:image" content="https://mdviewer.app/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Add a Markdown Viewer to Your .NET App in Minutes">
+    <meta name="twitter:description" content="Drop-in WinForms UserControl with full MDViewer rendering, navigation, and PDF/Word export. .NET 8 and .NET Framework 4.8 compatible.">
+    <meta name="twitter:image" content="https://mdviewer.app/og-image.png">
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "utfkjavsme");
+    </script>
+    <style>
+        :root {
+            --grad: linear-gradient(135deg, #1a1a2e 0%, #764ba2 100%);
+            --purple: #764ba2;
+            --dark: #1a1a2e;
+            --code-bg: #0d1117;
+            --text: #333;
+            --muted: #666;
+            --light-bg: #f8f9fa;
+            --white: #fff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); background: var(--white); }
+
+        nav { background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 12px rgba(0,0,0,0.08); }
+        .nav-brand { font-size: 1.4rem; font-weight: 700; background: linear-gradient(135deg,#667eea,#764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-decoration: none; }
+        .nav-cta { background: linear-gradient(135deg,#667eea,#764ba2); color: white; padding: 0.55rem 1.4rem; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: opacity 0.2s, transform 0.2s; }
+        .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+        .hero { background: var(--grad); color: white; padding: 6rem 2rem 5rem; text-align: center; }
+        .hero-eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; margin-bottom: 1.25rem; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; max-width: 860px; margin-left: auto; margin-right: auto; }
+        .hero-sub { font-size: clamp(1rem, 2.5vw, 1.2rem); opacity: 0.88; max-width: 620px; margin: 0 auto 2rem; line-height: 1.65; }
+        .hero-compat { display: inline-flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+        .compat-badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 0.3rem 0.9rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { background: white; color: var(--purple); padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .btn-ghost { border: 2px solid rgba(255,255,255,0.6); color: white; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: background 0.2s; }
+        .btn-ghost:hover { background: rgba(255,255,255,0.15); }
+
+        /* Code hero */
+        .code-section { background: var(--code-bg); padding: 5rem 2rem; }
+        .code-section .label { text-align: center; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8b949e; margin-bottom: 0.5rem; }
+        .code-section h2 { text-align: center; font-size: clamp(1.5rem,4vw,2rem); font-weight: 700; color: #e6edf3; margin-bottom: 3rem; }
+        .code-block { max-width: 680px; margin: 0 auto; background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; }
+        .code-block-header { background: #21262d; padding: 0.75rem 1.25rem; display: flex; justify-content: space-between; align-items: center; }
+        .code-block-header span { color: #8b949e; font-size: 0.8rem; font-family: monospace; }
+        .lang-tag { background: rgba(118,75,162,0.3); color: #d2a8ff; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; letter-spacing: 0.05em; }
+        .code-block pre { padding: 1.5rem; font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace; font-size: 0.9rem; line-height: 1.7; color: #e6edf3; overflow-x: auto; }
+        .tok-kw { color: #ff7b72; }
+        .tok-ty { color: #ffa657; }
+        .tok-str { color: #a5d6ff; }
+        .tok-cm { color: #8b949e; }
+        .tok-fn { color: #d2a8ff; }
+        .tok-prop { color: #79c0ff; }
+        .code-caption { text-align: center; color: #8b949e; font-size: 0.85rem; margin-top: 1.25rem; }
+        .code-caption strong { color: #3fb950; }
+
+        .section { padding: 5rem 2rem; }
+        .section-inner { max-width: 1000px; margin: 0 auto; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); margin-bottom: 0.75rem; }
+        .section h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+        .section .lead { font-size: 1.1rem; color: var(--muted); line-height: 1.7; max-width: 620px; margin-bottom: 3rem; }
+        .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .benefit { background: var(--light-bg); border-radius: 14px; padding: 1.75rem; }
+        .benefit-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+        .benefit h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .benefit p { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+
+        .includes-list { max-width: 700px; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 2rem; }
+        .include-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem; background: white; border: 1px solid #e8e8e8; border-radius: 10px; }
+        .include-check { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg,#667eea,#764ba2); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+        .include-item span { font-size: 0.9rem; line-height: 1.4; color: var(--text); }
+
+        .pain { background: var(--dark); color: white; padding: 5rem 2rem; }
+        .pain-inner { max-width: 800px; margin: 0 auto; }
+        .pain h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 1rem; }
+        .pain p { font-size: 1.05rem; opacity: 0.75; margin-bottom: 2rem; line-height: 1.7; }
+        .pain-list { display: flex; flex-direction: column; gap: 1rem; }
+        .pain-item { background: rgba(255,255,255,0.06); border-left: 3px solid rgba(118,75,162,0.6); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; font-size: 1rem; opacity: 0.85; line-height: 1.5; }
+
+        .quote-section { padding: 4rem 2rem; text-align: center; background: white; }
+        .pull-quote { font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700; font-style: italic; max-width: 700px; margin: 0 auto; line-height: 1.35; color: var(--dark); }
+        .pull-quote span { background: linear-gradient(135deg,#667eea,#764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .cta-section { background: var(--grad); color: white; padding: 6rem 2rem; text-align: center; }
+        .cta-section h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
+        .cta-section p { font-size: 1.1rem; opacity: 0.85; margin-bottom: 2.5rem; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+        .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .btn-white { background: white; color: var(--purple); padding: 0.85rem 2rem; border-radius: 50px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .btn-outline-white { border: 2px solid rgba(255,255,255,0.6); color: white; padding: 0.85rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: background 0.2s; }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.15); }
+        .donate-nudge { font-size: 0.9rem; opacity: 0.7; }
+        .donate-nudge a { color: white; }
+
+        footer { background: #1a1a2e; color: rgba(255,255,255,0.6); padding: 2rem; text-align: center; font-size: 0.85rem; }
+        footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+        footer a:hover { color: white; }
+
+        @media (max-width: 600px) {
+            .hero, .section, .code-section, .pain, .cta-section { padding: 3.5rem 1.5rem; }
+            .includes-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="../../index.html" class="nav-brand">MDViewer</a>
+    <a href="../../downloads.html" class="nav-cta">Download Free →</a>
+</nav>
+
+<section class="hero">
+    <p class="hero-eyebrow">MarkdownViewer.Controls</p>
+    <h1>Ship a Full Markdown Documentation Browser in Your .NET App — This Week</h1>
+    <p class="hero-sub">MarkdownViewer.Controls is the complete MDViewer rendering engine as a drop-in WinForms UserControl. Add it to your app with three lines of code.</p>
+    <div class="hero-compat">
+        <span class="compat-badge">.NET 8</span>
+        <span class="compat-badge">.NET Framework 4.8</span>
+        <span class="compat-badge">WinForms</span>
+        <span class="compat-badge">Windows 10 / 11</span>
+    </div>
+    <div class="hero-ctas">
+        <a href="../../downloads.html" class="btn-primary">Download Free to Evaluate</a>
+        <a href="../../pricing.html" class="btn-ghost">Pro License — $19/year</a>
+    </div>
+</section>
+
+<section class="code-section">
+    <p class="label">Integration</p>
+    <h2>This is literally all the code you need</h2>
+    <div class="code-block">
+        <div class="code-block-header">
+            <span>Form1.cs</span>
+            <span class="lang-tag">C#</span>
+        </div>
+        <pre><span class="tok-cm">// 1. Add the control to your form</span>
+<span class="tok-kw">var</span> viewer = <span class="tok-kw">new</span> <span class="tok-ty">MarkdownViewerControl</span>();
+viewer.<span class="tok-prop">Dock</span> = <span class="tok-ty">DockStyle</span>.<span class="tok-prop">Fill</span>;
+<span class="tok-kw">this</span>.<span class="tok-fn">Controls</span>.<span class="tok-fn">Add</span>(viewer);
+
+<span class="tok-cm">// 2. Load any markdown file</span>
+viewer.<span class="tok-fn">LoadFile</span>(<span class="tok-str">@"C:\docs\index.md"</span>);
+
+<span class="tok-cm">// 3. Done. Navigation, rendering, export — all included.</span></pre>
+    </div>
+    <p class="code-caption"><strong>That's it.</strong> Smart navigation, back/forward history, breadcrumbs, and PDF/Word export are all built in.</p>
+</section>
+
+<section class="pain">
+    <div class="pain-inner">
+        <h2>Building this from scratch is not worth it</h2>
+        <p>You've been there. The ticket says "add in-app documentation." You start researching.</p>
+        <div class="pain-list">
+            <div class="pain-item">Markdown rendering libraries exist, but none of them handle navigation — so you're writing a file browser too. Then breadcrumbs. Then back-button history.</div>
+            <div class="pain-item">Three weeks later you have something that kind of works, but the images don't load correctly and the relative links break half the time.</div>
+            <div class="pain-item">You deprioritize it. The ticket sits. Your users read documentation from a raw text file or a separate browser window. Nobody's happy.</div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-inner">
+        <p class="section-label">What's included</p>
+        <h2>The full MDViewer engine — in your app</h2>
+        <p class="lead">MarkdownViewer.Controls packages everything MDViewer can do into a single redistributable component.</p>
+        <div class="includes-list">
+            <div class="include-item"><div class="include-check">✓</div><span>Full GitHub Flavored Markdown rendering</span></div>
+            <div class="include-item"><div class="include-check">✓</div><span>Smart folder navigation</span></div>
+            <div class="include-item"><div class="include-check">✓</div><span>Breadcrumb trail</span></div>
+            <div class="include-item"><div class="include-check">✓</div><span>Back / forward history</span></div>
+            <div class="include-item"><div class="include-check">✓</div><span>PDF export</span></div>
+            <div class="include-item"><div class="include-check">✓</div><span>Word (.docx) export</span></div>
+            <div class="include-item"><div class="include-check">✓</div><span>Relative image path resolution</span></div>
+            <div class="include-item"><div class="include-check">✓</div><span>Syntax-highlighted code blocks</span></div>
+            <div class="include-item"><div class="include-check">✓</div><span>Clickable internal links</span></div>
+            <div class="include-item"><div class="include-check">✓</div><span>Responsive layout in any panel size</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--light-bg)">
+    <div class="section-inner">
+        <p class="section-label">Why it's the right call</p>
+        <h2>Battle-tested. Maintained. Zero build cost.</h2>
+        <p class="lead">MDViewer has been installed thousands of times. The rendering engine is production-grade, actively maintained, and handles edge cases you haven't thought about yet.</p>
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">🏭</div>
+                <h3>Production-Grade Rendering</h3>
+                <p>The same engine that powers the MDViewer desktop app, used daily by developers and technical writers. It handles large docs, complex tables, nested code blocks, and hundreds of files without breaking.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">🔌</div>
+                <h3>Legacy .NET Support</h3>
+                <p>MarkdownViewer.Controls targets both .NET 8 and .NET Framework 4.8 — because not every app is on the latest runtime. It works in your codebase, not a greenfield project.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">🔄</div>
+                <h3>Actively Maintained</h3>
+                <p>MDViewer is under active development. When the rendering engine improves, MarkdownViewer.Controls improves. You're not adopting an abandoned library.</p>
+            </div>
+            <div class="benefit">
+                <div class="benefit-icon">📅</div>
+                <h3>Ship This Sprint</h3>
+                <p>Integration takes an afternoon. Your users get a full documentation browser — navigation, search, export — before the end of the week. No architecture decisions, no research spike.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="quote-section">
+    <p class="pull-quote">"Stop building markdown renderers. <span>Spend that time on your actual product</span> — the one your users came for."</p>
+</section>
+
+<section class="cta-section">
+    <h2>Add it to your app today</h2>
+    <p>Download MDViewer free to evaluate MarkdownViewer.Controls. A Pro license at $19/year covers redistribution in your application.</p>
+    <div class="cta-row">
+        <a href="../../downloads.html" class="btn-white">Download Free to Evaluate</a>
+        <a href="../../pricing.html" class="btn-outline-white">Pro License — $19/year</a>
+    </div>
+    <p class="donate-nudge">Building something cool with it? <a href="https://cash.app/$JonJaques/10" target="_blank" rel="noopener noreferrer">A $10 tip</a> is always appreciated.</p>
+</section>
+
+<footer>
+    <p><a href="../../index.html">MDViewer</a> &nbsp;·&nbsp; <a href="../../downloads.html">Download</a> &nbsp;·&nbsp; <a href="../../docs.html">Docs</a> &nbsp;·&nbsp; <a href="../../pricing.html">Pricing</a> &nbsp;·&nbsp; <a href="../../blog.html">Blog</a></p>
+    <p style="margin-top:0.5rem">&copy; 2026 MDViewer — Built for Windows documentation professionals.</p>
+</footer>
+
+</body>
+</html>
