@@ -210,10 +210,111 @@
         footer a { color: white; text-decoration: none; opacity: 0.85; }
         footer a:hover { opacity: 1; }
 
+        /* Coming-up index */
+        .coming-up {
+            padding: 4rem 0 5rem;
+            border-top: 1px solid #eaeaea;
+            margin-top: 1rem;
+        }
+
+        .coming-up-header {
+            margin-bottom: 3rem;
+        }
+
+        .coming-up-header h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+
+        .coming-up-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .category-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .category-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .cat-product   { background: rgba(118,75,162,0.1);  color: #764ba2; }
+        .cat-markdown  { background: rgba(102,126,234,0.1); color: #667eea; }
+        .cat-workflow  { background: rgba(67,184,156,0.1);  color: #2e9e82; }
+        .cat-dev       { background: rgba(61,61,143,0.1);   color: #3d3d8f; }
+        .cat-usecases  { background: rgba(240,147,251,0.12);color: #a040b8; }
+        .cat-bigpic    { background: rgba(51,51,51,0.08);   color: #555; }
+
+        .post-index {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .index-row {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            padding: 0.7rem 1.1rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.15s;
+        }
+
+        .index-row:last-child { border-bottom: none; }
+
+        .index-row:hover { background: #fafafa; }
+
+        .index-row.published {
+            background: rgba(118,75,162,0.03);
+        }
+
+        .index-row.published .index-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .index-row.published .index-title::after {
+            content: " — Published";
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #2e9e82;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .week-num {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #bbb;
+            min-width: 2.2rem;
+            flex-shrink: 0;
+        }
+
+        .index-title {
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
         @media (max-width: 600px) {
             .blog-header h1 { font-size: 2rem; }
             .nav-links { gap: 1rem; }
             .post-card { padding: 1.5rem; }
+            .coming-up { padding: 3rem 0 4rem; }
         }
     </style>
 </head>
@@ -252,6 +353,111 @@
                 <p>Introducing the official MDViewer blog — where we'll share product updates, tips for getting the most out of your markdown workflow, and behind-the-scenes development news.</p>
                 <span class="read-more">Read more →</span>
             </a>
+
+        </div>
+
+        <div class="coming-up">
+            <div class="coming-up-header">
+                <h2>52 weeks of markdown</h2>
+                <p>The full publishing plan — one post a week. Linked as they go live.</p>
+            </div>
+
+            <!-- Product & Features -->
+            <div class="category-group">
+                <div class="category-label cat-product">Product &amp; Features</div>
+                <div class="post-index">
+                    <div class="index-row published">
+                        <span class="week-num">01</span>
+                        <a href="blog/welcome-to-the-mdviewer-blog.html" class="index-title" style="text-decoration:none">Welcome to the MDViewer Blog</a>
+                    </div>
+                    <div class="index-row"><span class="week-num">02</span><span class="index-title">How MDViewer's Smart Navigation Actually Works</span></div>
+                    <div class="index-row"><span class="week-num">03</span><span class="index-title">Exporting to PDF: Getting the Best Results</span></div>
+                    <div class="index-row"><span class="week-num">04</span><span class="index-title">Word Export Tips for Clean, Shareable .docx Files</span></div>
+                    <div class="index-row"><span class="week-num">05</span><span class="index-title">The Documentation Hub: Your Team's Markdown Command Center</span></div>
+                    <div class="index-row"><span class="week-num">06</span><span class="index-title">Embed MDViewer in Any .NET App with MarkdownViewer.Controls</span></div>
+                    <div class="index-row"><span class="week-num">07</span><span class="index-title">Every MDViewer Keyboard Shortcut Worth Knowing</span></div>
+                    <div class="index-row"><span class="week-num">08</span><span class="index-title">Using MDViewer with Git Repositories</span></div>
+                    <div class="index-row"><span class="week-num">09</span><span class="index-title">Setting Up Multi-Root Workspaces</span></div>
+                    <div class="index-row"><span class="week-num">10</span><span class="index-title">Command-Line Usage and Automation with MDViewer</span></div>
+                    <div class="index-row"><span class="week-num">11</span><span class="index-title">Dark Mode, Themes, and Making MDViewer Yours</span></div>
+                </div>
+            </div>
+
+            <!-- Markdown Skills -->
+            <div class="category-group">
+                <div class="category-label cat-markdown">Markdown Skills</div>
+                <div class="post-index">
+                    <div class="index-row"><span class="week-num">12</span><span class="index-title">Markdown Tables: Everything You Need to Know</span></div>
+                    <div class="index-row"><span class="week-num">13</span><span class="index-title">Code Blocks Done Right: Syntax Highlighting and Fenced Blocks</span></div>
+                    <div class="index-row"><span class="week-num">14</span><span class="index-title">Linking Between Files: Relative Paths and Best Practices</span></div>
+                    <div class="index-row"><span class="week-num">15</span><span class="index-title">Images in Markdown: Paths, Alt Text, and Sizing</span></div>
+                    <div class="index-row"><span class="week-num">16</span><span class="index-title">Front Matter and Metadata in Markdown Files</span></div>
+                    <div class="index-row"><span class="week-num">17</span><span class="index-title">Task Lists, Footnotes, and the GFM Extensions You're Probably Missing</span></div>
+                    <div class="index-row"><span class="week-num">18</span><span class="index-title">Writing Effective Headings and Document Structure</span></div>
+                    <div class="index-row"><span class="week-num">19</span><span class="index-title">Markdown for API Documentation: A Practical Guide</span></div>
+                    <div class="index-row"><span class="week-num">20</span><span class="index-title">Building a Glossary and Index in Markdown</span></div>
+                    <div class="index-row"><span class="week-num">21</span><span class="index-title">Diagrams in Markdown: Mermaid and ASCII Art</span></div>
+                </div>
+            </div>
+
+            <!-- Documentation Workflows -->
+            <div class="category-group">
+                <div class="category-label cat-workflow">Documentation Workflows</div>
+                <div class="post-index">
+                    <div class="index-row"><span class="week-num">22</span><span class="index-title">How to Structure a Documentation Project from Scratch</span></div>
+                    <div class="index-row"><span class="week-num">23</span><span class="index-title">Docs-as-Code: What It Is and Why It Matters</span></div>
+                    <div class="index-row"><span class="week-num">24</span><span class="index-title">Version-Controlling Your Documentation with Git</span></div>
+                    <div class="index-row"><span class="week-num">25</span><span class="index-title">Writing Documentation People Actually Read</span></div>
+                    <div class="index-row"><span class="week-num">26</span><span class="index-title">Onboarding New Teammates with Markdown Docs</span></div>
+                    <div class="index-row"><span class="week-num">27</span><span class="index-title">Keeping Documentation in Sync with Your Codebase</span></div>
+                    <div class="index-row"><span class="week-num">28</span><span class="index-title">Building a Personal Knowledge Base in Markdown</span></div>
+                    <div class="index-row"><span class="week-num">29</span><span class="index-title">From Markdown to PDF: Professional Document Delivery</span></div>
+                    <div class="index-row"><span class="week-num">30</span><span class="index-title">Documentation-Driven Development</span></div>
+                    <div class="index-row"><span class="week-num">31</span><span class="index-title">The Anatomy of a Great README</span></div>
+                </div>
+            </div>
+
+            <!-- For Developers -->
+            <div class="category-group">
+                <div class="category-label cat-dev">For Developers</div>
+                <div class="post-index">
+                    <div class="index-row"><span class="week-num">32</span><span class="index-title">Runbooks in Markdown: A Template That Actually Works</span></div>
+                    <div class="index-row"><span class="week-num">33</span><span class="index-title">Architecture Decision Records (ADRs): Format and Workflow</span></div>
+                    <div class="index-row"><span class="week-num">34</span><span class="index-title">Using MDViewer for Code Review Documentation</span></div>
+                    <div class="index-row"><span class="week-num">35</span><span class="index-title">Integrating MDViewer with VS Code and External Editors</span></div>
+                    <div class="index-row"><span class="week-num">36</span><span class="index-title">Enterprise Deployment: MSI, Group Policy, and Silent Install</span></div>
+                    <div class="index-row"><span class="week-num">37</span><span class="index-title">Why MDViewer Is Built on .NET 8 and WebView2</span></div>
+                    <div class="index-row"><span class="week-num">38</span><span class="index-title">How the Rendering Pipeline Works: From Markdown to Pixel</span></div>
+                    <div class="index-row"><span class="week-num">39</span><span class="index-title">Contributing to MDViewer: The Development Workflow</span></div>
+                </div>
+            </div>
+
+            <!-- Use Cases -->
+            <div class="category-group">
+                <div class="category-label cat-usecases">Use Cases</div>
+                <div class="post-index">
+                    <div class="index-row"><span class="week-num">40</span><span class="index-title">MDViewer for MSPs: Managing Client Documentation at Scale</span></div>
+                    <div class="index-row"><span class="week-num">41</span><span class="index-title">MDViewer for Technical Writers: A Day-in-the-Life Workflow</span></div>
+                    <div class="index-row"><span class="week-num">42</span><span class="index-title">MDViewer for Software Architects: ADRs, RFCs, and Design Docs</span></div>
+                    <div class="index-row"><span class="week-num">43</span><span class="index-title">MDViewer for IT Departments: SOPs, Runbooks, and Policy Docs</span></div>
+                    <div class="index-row"><span class="week-num">44</span><span class="index-title">MDViewer for Freelancers: Delivering Client Work in Markdown</span></div>
+                    <div class="index-row"><span class="week-num">45</span><span class="index-title">Using MDViewer as a Personal Knowledge Management System</span></div>
+                    <div class="index-row"><span class="week-num">46</span><span class="index-title">MDViewer in Education: Course Notes and Research Documentation</span></div>
+                </div>
+            </div>
+
+            <!-- The Bigger Picture -->
+            <div class="category-group">
+                <div class="category-label cat-bigpic">The Bigger Picture</div>
+                <div class="post-index">
+                    <div class="index-row"><span class="week-num">47</span><span class="index-title">Why Markdown Is Winning the Documentation Wars</span></div>
+                    <div class="index-row"><span class="week-num">48</span><span class="index-title">The Problem with Wikis (and Why Markdown Is Better)</span></div>
+                    <div class="index-row"><span class="week-num">49</span><span class="index-title">Plain Text Is Forever: Why Your Docs Should Outlive Your Tools</span></div>
+                    <div class="index-row"><span class="week-num">50</span><span class="index-title">The Future of Technical Documentation</span></div>
+                    <div class="index-row"><span class="week-num">51</span><span class="index-title">Building Indie Software in 2026: Lessons from MDViewer</span></div>
+                    <div class="index-row"><span class="week-num">52</span><span class="index-title">One Year of MDViewer: What We've Built and What's Next</span></div>
+                </div>
+            </div>
 
         </div>
     </div>
