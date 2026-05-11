@@ -379,30 +379,152 @@
             text-decoration: underline;
         }
         
+        /* Hamburger toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px 4px;
+            flex-shrink: 0;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-dark);
+            border-radius: 2px;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        nav.nav-open {
+            border-radius: 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
+            .nav-toggle {
+                display: flex;
             }
-            
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                padding: 0.5rem 0;
+                border-radius: 0 0 15px 15px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 1.5rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
             .download-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .features {
                 grid-template-columns: 1fr;
             }
-            
+
+            header {
+                padding: 3rem 0;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
+
+            .hero .subtitle {
+                font-size: 1.25rem;
+            }
+
+            .hero .description {
+                font-size: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.9rem;
+            }
+
             .container {
                 padding: 0 20px;
             }
-            
+
             .hero-features {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem 1.25rem;
+                margin: 2rem 0;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin: 1.5rem 0;
+            }
+
+            .hero-card {
+                padding: 1.5rem;
+            }
+
+            .cta-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .requirements {
+                margin: 2rem 0;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 260px;
             }
         }
     </style>
@@ -413,6 +535,11 @@
             <div class="nav-brand">
                 <a href="index.html">MDViewer</a>
             </div>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
                 <a href="#features">Features</a>
                 <a href="downloads.html">Download</a>
@@ -553,5 +680,22 @@
             <p style="margin-top: 1rem; font-size: 0.9rem;">Created by <a href="https://www.linkedin.com/in/jonjaques/" target="_blank" rel="noopener noreferrer">Jon Jaques</a></p>
         </footer>
     </div>
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navEl = document.querySelector('nav');
+        navToggle.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', String(open));
+            navEl.classList.toggle('nav-open', open);
+        });
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navEl.classList.remove('nav-open');
+            });
+        });
+    </script>
 </body>
 </html>
