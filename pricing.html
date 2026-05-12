@@ -801,11 +801,6 @@
                     </div>
                     <button type="submit" class="form-submit" id="lf-submit">Send Inquiry</button>
                 </form>
-                <div class="form-success" id="formSuccess">
-                    <div class="success-icon">✅</div>
-                    <h4>Message received</h4>
-                    <p>We'll get back to you at the email you provided, usually within one business day.</p>
-                </div>
             </div>
         </div>
     </div>
@@ -832,43 +827,18 @@
             document.body.style.overflow = '';
         }
 
-        async function submitLicenseForm(e) {
+        function submitLicenseForm(e) {
             e.preventDefault();
-            const btn = document.getElementById('lf-submit');
-            const form = document.getElementById('licenseForm');
-            btn.disabled = true;
-            btn.textContent = 'Sending…';
-
-            const data = new FormData(form);
-
-            try {
-                // Replace YOUR_FORM_ID with your Formspree form endpoint ID
-                const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (res.ok) {
-                    form.style.display = 'none';
-                    document.getElementById('formSuccess').style.display = 'block';
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (err) {
-                // Fallback: open mailto with form data pre-filled
-                const name    = data.get('name') || '';
-                const company = data.get('company') || '';
-                const license = data.get('license_type') || '';
-                const seats   = data.get('seats') || '';
-                const message = data.get('message') || '';
-                const body = encodeURIComponent(
-                    `Name: ${name}\nCompany: ${company}\nLicense: ${license}\nSeats: ${seats}\n\n${message}`
-                );
-                window.location.href = `mailto:support@cnrit.com?subject=MDViewer License Inquiry — ${encodeURIComponent(license)}&body=${body}`;
-                btn.disabled = false;
-                btn.textContent = 'Send Inquiry';
-            }
+            const data = new FormData(document.getElementById('licenseForm'));
+            const name    = data.get('name') || '';
+            const company = data.get('company') || '';
+            const license = data.get('license_type') || '';
+            const seats   = data.get('seats') || '';
+            const message = data.get('message') || '';
+            const body = encodeURIComponent(
+                `Name: ${name}\nCompany: ${company}\nLicense: ${license}\nSeats: ${seats}\n\n${message}`
+            );
+            window.location.href = `mailto:support@cnrit.com?subject=MDViewer License Inquiry — ${encodeURIComponent(license)}&body=${body}`;
         }
 
         // Close on backdrop click
