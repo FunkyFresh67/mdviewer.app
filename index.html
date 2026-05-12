@@ -123,38 +123,234 @@
             color: var(--primary-color);
         }
         
-        /* Header */
+        /* ── Hero ── */
         header {
-            padding: 5rem 0;
-            text-align: center;
+            padding: 4.5rem 0 3.5rem;
         }
-        
+
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Version badge */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            background: rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.28);
+            color: rgba(255,255,255,0.92);
+            padding: 0.35rem 0.9rem;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.6rem;
+            backdrop-filter: blur(12px);
+        }
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #7defa8;
+            border-radius: 50%;
+            flex-shrink: 0;
+            animation: hero-pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes hero-pulse {
+            0%,100% { opacity:1; transform:scale(1); }
+            50%      { opacity:0.5; transform:scale(0.75); }
+        }
+
+        /* Headline */
         .hero h1 {
             color: white;
-            font-size: clamp(3rem, 6vw, 5rem);
-            margin-bottom: 1.5rem;
+            font-size: clamp(3.6rem, 7vw, 6rem);
+            margin: 0 0 0.75rem;
             font-weight: 800;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.035em;
+            line-height: 1;
+            text-shadow: 0 2px 24px rgba(0,0,0,0.18);
         }
-        
+
         .hero .subtitle {
-            font-size: 1.6rem;
-            color: var(--white);
-            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.88);
+            margin: 0 0 1.5rem;
             font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            line-height: 1.45;
         }
-        
-        .hero .description {
-            font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+
+        /* Trust signals */
+        .hero-trust {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0;
+            margin-bottom: 2.25rem;
+            font-size: 0.84rem;
+            color: rgba(255,255,255,0.68);
+        }
+        .hero-trust span { white-space: nowrap; }
+        .hero-trust span + span::before {
+            content: '·';
+            margin: 0 0.55rem;
+            opacity: 0.45;
+        }
+
+        /* CTAs */
+        .hero-ctas {
+            display: flex;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+        .hero-cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: white;
+            color: var(--primary-color);
+            padding: 0.82rem 1.65rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .hero-cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+        }
+        .hero-cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 0.82rem 1.65rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: 1.5px solid rgba(255,255,255,0.32);
+            backdrop-filter: blur(10px);
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+        .hero-cta-secondary:hover {
+            background: rgba(255,255,255,0.18);
+            border-color: rgba(255,255,255,0.55);
+            transform: translateY(-2px);
+        }
+
+        /* Mockup panel */
+        .hero-mockup {
+            flex: 0 0 420px;
+            position: relative;
+        }
+        .hero-mockup::before {
+            content: '';
+            position: absolute;
+            inset: -30px;
+            background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 68%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .mockup-window {
+            position: relative;
+            z-index: 1;
+            background: #1e1e2e;
+            border-radius: 13px;
+            overflow: hidden;
+            box-shadow:
+                0 30px 70px rgba(0,0,0,0.38),
+                0 0 0 1px rgba(255,255,255,0.07);
+            transform: perspective(900px) rotateY(-6deg) rotateX(2deg);
+            transition: transform 0.4s ease;
+        }
+        .mockup-window:hover {
+            transform: perspective(900px) rotateY(-2deg) rotateX(1deg);
+        }
+        .mockup-titlebar {
+            background: #181825;
+            padding: 0.65rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .mockup-dot.r { background: #ff5f57; }
+        .mockup-dot.y { background: #ffbd2e; }
+        .mockup-dot.g { background: #28ca41; }
+        .mockup-filename {
+            flex: 1;
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.28);
+            margin-left: -36px;
+            letter-spacing: 0.01em;
+        }
+        .mockup-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 230px;
+        }
+        .mockup-source {
+            padding: 1.1rem 1rem;
+            font-family: 'Cascadia Code','Consolas','Courier New',monospace;
+            font-size: 0.69rem;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.38);
+            border-right: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+        .mockup-rendered {
+            padding: 1.1rem 1rem;
+            font-size: 0.76rem;
+            line-height: 1.55;
+            overflow: hidden;
+            background: #1a1a2e;
+        }
+        /* Source syntax colors */
+        .syn-h   { color: #89b4fa; }
+        .syn-kw  { color: #cba6f7; }
+        .syn-str { color: #a6e3a1; }
+        .syn-lnk { color: #89dceb; }
+        .syn-dim { color: rgba(255,255,255,0.2); }
+        /* Rendered colors */
+        .md-h1  { color: #cba6f7; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.2rem; }
+        .md-h2  { color: #89b4fa; font-weight: 600; font-size: 0.78rem; margin: 0.55rem 0 0.2rem; }
+        .md-p   { color: rgba(255,255,255,0.58); margin-bottom: 0.2rem; }
+        .md-str { font-weight: 600; color: rgba(255,255,255,0.85); }
+        .md-c   { background: rgba(137,180,250,0.14); color: #89dceb; padding: 0.05rem 0.3rem; border-radius: 3px; font-family: monospace; font-size: 0.66rem; }
+        .md-hr  { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0.45rem 0; }
+        .md-lnk { color: #89dceb; text-decoration: none; }
+
+        /* hero .description kept for backward compat but unused */
+        .hero .description { display: none; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; gap: 2.5rem; text-align: center; }
+            .hero-trust { justify-content: center; }
+            .hero-ctas { justify-content: center; }
+            .hero-mockup { flex: none; width: 100%; max-width: 420px; margin: 0 auto; }
+            .mockup-window { transform: none; }
+        }
+        @media (max-width: 580px) {
+            .hero-mockup { display: none; }
         }
         
         /* Hero Features Section */
@@ -553,9 +749,63 @@
     <div class="container">
         <header>
             <div class="hero">
-                <h1>MDViewer</h1>
-                <p class="subtitle">Professional Markdown Viewer for Windows</p>
-                <p class="description">Transform your documentation workflow with advanced navigation, built-in editing, seamless export capabilities, and enterprise-grade features designed for professional teams.</p>
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot"></span>
+                        v1.7.0 &mdash; Now with embeddable controls
+                    </div>
+                    <h1>MDViewer</h1>
+                    <p class="subtitle">The professional Markdown viewer for Windows</p>
+                    <div class="hero-trust">
+                        <span>Free to download</span>
+                        <span>Windows 10+</span>
+                        <span>No account needed</span>
+                        <span>Works offline</span>
+                    </div>
+                    <div class="hero-ctas">
+                        <a href="downloads.html" class="hero-cta-primary">&#8595; Download Free</a>
+                        <a href="pricing.html" class="hero-cta-secondary">View Pricing</a>
+                    </div>
+                </div>
+
+                <div class="hero-mockup">
+                    <div class="mockup-window">
+                        <div class="mockup-titlebar">
+                            <div class="mockup-dot r"></div>
+                            <div class="mockup-dot y"></div>
+                            <div class="mockup-dot g"></div>
+                            <div class="mockup-filename">README.md &mdash; MDViewer</div>
+                        </div>
+                        <div class="mockup-body">
+                            <div class="mockup-source">
+                                <div><span class="syn-h"># MDViewer</span></div>
+                                <div class="syn-dim">&nbsp;</div>
+                                <div><span class="syn-kw">**Professional**</span> Markdown</div>
+                                <div>viewer for Windows.</div>
+                                <div class="syn-dim">&nbsp;</div>
+                                <div><span class="syn-h">## Features</span></div>
+                                <div class="syn-dim">&nbsp;</div>
+                                <div>- Smart navigation</div>
+                                <div>- Built-in editor</div>
+                                <div>- PDF &amp; Word export</div>
+                                <div>- <span class="syn-str">`Embeddable`</span></div>
+                                <div class="syn-dim">&nbsp;</div>
+                                <div><span class="syn-lnk">[Download &rarr;](downloads)</span></div>
+                            </div>
+                            <div class="mockup-rendered">
+                                <div class="md-h1">MDViewer</div>
+                                <div class="md-p"><span class="md-str">Professional</span> Markdown viewer for Windows.</div>
+                                <hr class="md-hr">
+                                <div class="md-h2">Features</div>
+                                <div class="md-p">&middot; Smart navigation</div>
+                                <div class="md-p">&middot; Built-in editor</div>
+                                <div class="md-p">&middot; PDF &amp; Word export</div>
+                                <div class="md-p">&middot; <span class="md-c">Embeddable</span></div>
+                                <div style="margin-top:0.5rem"><a class="md-lnk" href="downloads.html">Download &rarr;</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
         
