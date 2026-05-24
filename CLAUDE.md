@@ -47,6 +47,8 @@ Emoji used as decorative icons should be wrapped in `<span role="img" aria-label
 
 External links (GitHub, LinkedIn) should include `target="_blank" rel="noopener noreferrer"` so they open in a new tab and don't leak referrer info.
 
+Link text should be descriptive of the destination — avoid generic text like "Learn More" or "Click Here". Use specific labels like "View Documentation" or "Download MDViewer" instead.
+
 ### Documentation (`setup/docs/`)
 User-facing docs are Markdown files rendered by the MDViewer app itself (dogfooding). They are also linked from `docs.html`. Edit these when documenting new app features.
 
