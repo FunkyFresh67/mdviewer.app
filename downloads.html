@@ -473,7 +473,7 @@
                 <a href="index.html">Home</a>
                 <a href="downloads.html" class="active">Download</a>
                 <a href="docs.html">Documentation</a>
-                <a href="pricing.html">Support</a>
+                <a href="pricing.html">Pricing</a>
                 <a href="blog.html">Blog</a>
             </div>
         </div>
@@ -571,7 +571,7 @@
             
             downloadGrid.innerHTML = `
                 <div class="download-card recommended">
-                    <h3>🏢 MSI Installer</h3>
+                    <h3><span role="img" aria-label="Office building">🏢</span> MSI Installer</h3>
                     <div class="size">${msiAsset ? formatFileSize(msiAsset.size) : '~2 MB'}</div>
                     <p>Professional Windows installer with Start Menu integration, file associations, and automatic updates.</p>
                     <a href="${msiAsset ? msiAsset.browser_download_url : '#'}" class="download-btn" ${!msiAsset ? 'onclick="return false;"' : ''}>Download MSI</a>

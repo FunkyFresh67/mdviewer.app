@@ -42,6 +42,11 @@ The Cloudflare Worker URL is hardcoded in `pricing.html`. See `PAYMENT-SETUP.md`
 ### Styling Conventions
 All pages share the same CSS variable palette (defined inline per page). No shared stylesheet — keep consistent by copying the `:root` block and nav/footer HTML when adding a new page. CSS uses flexbox throughout; no CSS frameworks.
 
+### Accessibility
+Emoji used as decorative icons should be wrapped in `<span role="img" aria-label="description">` for screen reader compatibility. This applies to feature icons, section heading emojis, and any emoji serving as a visual indicator rather than inline decoration.
+
+External links (GitHub, LinkedIn) should include `target="_blank" rel="noopener noreferrer"` so they open in a new tab and don't leak referrer info.
+
 ### Documentation (`setup/docs/`)
 User-facing docs are Markdown files rendered by the MDViewer app itself (dogfooding). They are also linked from `docs.html`. Edit these when documenting new app features.
 
